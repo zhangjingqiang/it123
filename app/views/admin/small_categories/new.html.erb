@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h1>New Small Category</h1>
+</div>
+<%= bootstrap_form_for @small_category, :url => { :action => "create" } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>

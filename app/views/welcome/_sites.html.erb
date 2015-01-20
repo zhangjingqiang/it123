@@ -1,0 +1,13 @@
+<div class="col-xs-12 col-sm-9">
+  <table class="table">
+    <% @small_categories.each do |small| %>
+    <tr>
+      <td><b><%= small.name %></b></td>
+      <td><%= link_to top_sites(small.id)[0].name, top_sites(small.id)[0].url rescue nil %></td>
+      <td><%= link_to top_sites(small.id)[1].name, top_sites(small.id)[1].url rescue nil %></td>
+      <td><%= link_to top_sites(small.id)[2].name, top_sites(small.id)[2].url rescue nil %></td>
+      <td><%= link_to 'More >>', site_path(small.big_category_id, small.id) if !small.big_category_id.nil? and !small.id.nil? %></td>
+    </tr>
+    <% end %>
+  </table>
+</div><!--/.col-xs-12.col-sm-9-->

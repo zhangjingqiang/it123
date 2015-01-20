@@ -1,0 +1,11 @@
+<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+  <div class="list-group">
+    <% @big_categories.each_with_index do |big, index| %>
+      <% if (params[:controller] == 'welcome' and index == 0) or (params[:controller] == 'big_categories' and big.id.to_i == params[:id].to_i) %>
+        <%= link_to big.name, big_path(big.id), class: "list-group-item active" %>
+      <% else %>
+        <%= link_to big.name, big_path(big.id), class: "list-group-item" %>
+      <% end %>
+    <% end %>
+  </div>
+</div><!--/.sidebar-offcanvas-->

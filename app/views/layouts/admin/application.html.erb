@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="<%= Settings.site_name %>">
+  <meta name="author" content="<%= Settings.author %>">
+  
+  <title><%= Settings.site_name %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render 'layouts/admin/header' %>
+  <div class="container">
+    <%= render 'layouts/messages' %>
+    <%= yield %>
+  </div>
+</body>
+</html>

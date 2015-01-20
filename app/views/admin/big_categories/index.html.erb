@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Big Categories</h1>
+</div>
+<table class="table table-bordered table-striped table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Created At</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @big_categories.each do |big_category| %>
+      <tr>
+        <td><%= big_category.name %></td>
+        <td><%=l big_category.created_at %></td>
+        <td>
+          <%= link_to 'Show', admin_big_category_path(big_category), :class => "btn btn-info" %>
+          <%= link_to 'Edit', edit_admin_big_category_path(big_category), :class => "btn btn-success" %>
+          <%= link_to 'Delete', admin_big_category_path(big_category), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @big_categories, renderer: BootstrapPagination::Rails %>
+<div style="clear:both;"></div>
+
+<%= link_to "New",
+            new_admin_big_category_path,
+            :class => 'btn btn-primary' %>

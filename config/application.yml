@@ -1,0 +1,13 @@
+defaults: &defaults
+  site_name: IT123
+  author: zhangjingqiang
+  about_me: http://about.me/zhangjingqiang
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

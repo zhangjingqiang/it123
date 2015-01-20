@@ -1,0 +1,2 @@
+class SmallCategoriesController < ApplicationController
+end

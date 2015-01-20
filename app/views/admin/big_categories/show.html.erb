@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h1>Show Big Category</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Name:</strong></dt>
+  <dd><%= @big_category.name %></dd>
+</dl>
+
+<%= link_to "Back", admin_big_categories_path, :class => 'btn btn-default'  %>
+<%= link_to "Edit", edit_admin_big_category_path(@big_category), :class => 'btn btn-default' %>
+<%= link_to "Delete", admin_big_category_path(@big_category),
+              :method => 'delete',
+              :data => { :confirm => 'Are you sure?' },
+              :class => 'btn btn-danger' %>

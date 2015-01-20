@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1>Show Small Category</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Name:</strong></dt>
+  <dd><%= @small_category.name %></dd>
+</dl>
+
+<dl class="dl-horizontal">
+  <dt><strong>small Category:</strong></dt>
+  <dd><%= big_category_name(@small_category.big_category_id) %></dd>
+</dl>
+
+<%= link_to "Back", admin_small_categories_path, :class => 'btn btn-default'  %>
+<%= link_to "Edit", edit_admin_small_category_path(@small_category), :class => 'btn btn-default' %>
+<%= link_to "Delete", admin_small_category_path(@small_category),
+              :method => 'delete',
+              :data => { :confirm => 'Are you sure?' },
+              :class => 'btn btn-danger' %>

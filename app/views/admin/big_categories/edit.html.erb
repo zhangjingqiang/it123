@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h1>Edit Big Category</h1>
+</div>
+<%= bootstrap_form_for @big_category, :url => { :action => "update" } do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+<% end %>
