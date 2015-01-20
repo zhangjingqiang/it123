@@ -4,4 +4,6 @@ class SmallCategory < ActiveRecord::Base
   
   validates :name, presence: true
   validates :big_category_id, presence: true
+  
+  default_scope { order('name') }
 end

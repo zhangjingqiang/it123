@@ -5,4 +5,6 @@ class Site < ActiveRecord::Base
   validates :url, presence: true
   validates :big_category_id, presence: true
   validates :small_category_id, presence: true
+  
+  default_scope { order('name') }
 end
