@@ -22,9 +22,9 @@
         $("#site_small_category_id").empty();
         for (var small_category in data.file_content) {
           $("#site_small_category_id").append('<option value="'+data.file_content[small_category].id+'">'+data.file_content[small_category].name+'</option>');
-          <% if !params[:small_category_id].nil? %>
-            if(data.file_content[small_category].id == <%= params[:small_category_id] %>){
-              $("#site_small_category_id option[value='"+data.file_content[small_category].id+"']").attr("selected", "selected");
+          <% if !@site.small_category_id.nil? %>
+            if(data.file_content[small_category].id == <%= @site.try(:small_category_id) %>) {
+               $("#site_small_category_id option[value='"+data.file_content[small_category].id+"']").attr("selected", "selected");
             }
           <% end %>
         }
