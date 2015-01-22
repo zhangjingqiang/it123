@@ -2,6 +2,7 @@ class Admin::SmallCategoriesController < ApplicationController
   before_action :authenticate_admin!
   layout 'admin/application'
   before_action :set_small_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_big_categories, only: [:index, :search]
   
   def index
     @small_categories = SmallCategory.all.paginate(:page => params[:page])
@@ -50,6 +51,10 @@ class Admin::SmallCategoriesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def search
+    @small_categories = SmallCategory.where(big_category_id: params[:big_category_id]).paginate(:page => params[:page])
+  end
 
   private
     def set_small_category
@@ -58,5 +63,9 @@ class Admin::SmallCategoriesController < ApplicationController
 
     def small_category_params
       params.require(:small_category).permit(:name, :big_category_id)
+    end
+  
+    def set_big_categories
+      @big_categories = BigCategory.all
     end
 end

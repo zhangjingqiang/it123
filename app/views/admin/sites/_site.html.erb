@@ -1,0 +1,80 @@
+<div class="page-header">
+  <h1>Sites</h1>
+</div>
+
+<div style="float: left;">
+  <form action="<%= admin_search_sites_path %>" method="get" class="form-inline">
+    <div class="form-group">
+      <select onchange="load_small_categories()" id="big_category_id" name="big_category_id" class="form-control input-xxlarge">
+        <% @big_categories.each do |big_category| %>
+          <option value="<%= big_category.id %>"><%= big_category.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="form-group">
+      <select id="small_category_id" name="small_category_id" class="form-control input-medium">
+      </select>
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+  </form>
+</div>
+<div style="float: right;">
+  <%= link_to "New", new_admin_site_path, :class => 'btn btn-primary' %>
+</div>
+<div style="clear: both;"></div>
+
+<hr>
+
+<% if @sites.present? %>
+  <table class="table table-bordered table-striped table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>URL</th>
+        <th>Big Category</th>
+        <th>Small Category</th>
+        <th>Created At</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @sites.each do |site| %>
+        <tr>
+          <td><%= site.name %></td>
+          <td><%= site.url %></td>
+          <td><%= big_category_name(site.big_category_id) %></td>
+          <td><%= small_category_name(site.small_category_id) %></td>
+          <td><%=l site.created_at %></td>
+          <td>
+            <%= link_to 'Show', admin_site_path(site), :class => "btn btn-info" %>
+            <%= link_to 'Edit', edit_admin_site_path(site), :class => "btn btn-success" %>
+            <%= link_to 'Delete', admin_site_path(site), method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @sites, renderer: BootstrapPagination::Rails %>
+<% else %>
+  No data.
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    load_small_categories();
+  });
+
+  function load_small_categories() {
+    $.ajax({
+      type: "GET",
+      url: "<%= admin_load_small_categories_path %>",
+      data: {big_category_id: $("#big_category_id").val()},
+      success: function(data, textStatus, xhr) {
+        $("#small_category_id").empty();
+        for (var small_category in data.file_content) {
+          $("#small_category_id").append('<option value="'+data.file_content[small_category].id+'">'+data.file_content[small_category].name+'</option>');
+        }
+      }
+    });
+  }
+</script>

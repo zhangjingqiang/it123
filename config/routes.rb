@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :small_categories
     resources :sites
     get 'load_small_categories', to: 'sites#load_small_categories'
+    get 'search_small_categories', to: 'small_categories#search', as: 'search_small_categories'
+    get 'search_sites', to: 'sites#search', as: 'search_sites'
   end
   
   root 'welcome#index'

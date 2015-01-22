@@ -2,6 +2,7 @@ class Admin::SitesController < ApplicationController
   before_action :authenticate_admin!
   layout 'admin/application'
   before_action :set_site, only: [:show, :edit, :update, :destroy]
+  before_action :set_big_categories, only: [:index, :search]
   
   def index
     @sites = Site.all.paginate(:page => params[:page])
@@ -60,6 +61,10 @@ class Admin::SitesController < ApplicationController
       }
     end
   end
+  
+  def search
+    @sites = Site.where(big_category_id: params[:big_category_id], small_category_id: params[:small_category_id]).paginate(:page => params[:page])
+  end
 
   private
     def set_site
@@ -68,5 +73,9 @@ class Admin::SitesController < ApplicationController
 
     def site_params
       params.require(:site).permit(:name, :url, :big_category_id, :small_category_id)
+    end
+  
+    def set_big_categories
+      @big_categories = BigCategory.all
     end
 end
