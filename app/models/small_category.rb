@@ -1,5 +1,5 @@
 class SmallCategory < ActiveRecord::Base
-  belongs_to :big_category
+  belongs_to :big_category, dependent: :destroy
   has_many :sites
   
   validates :name, presence: true
