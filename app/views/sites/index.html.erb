@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-  <li class="active"><%= big_category_name(params[:big_category_id]) %></li>
+  <li class="active"><%= link_to big_category_name(params[:big_category_id]), big_path(params[:big_category_id]) %></li>
   <li class="active"><%= small_category_name(params[:small_category_id]) %></li>
 </ol>
 
