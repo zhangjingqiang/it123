@@ -6,7 +6,7 @@
       <td><%= link_to top_sites(small.id)[0].name, top_sites(small.id)[0].url rescue nil %></td>
       <td><%= link_to top_sites(small.id)[1].name, top_sites(small.id)[1].url rescue nil %></td>
       <td><%= link_to top_sites(small.id)[2].name, top_sites(small.id)[2].url rescue nil %></td>
-      <td class="text-right"><%= link_to 'More >>', site_path(small.big_category_id, small.id) if !small.big_category_id.nil? and !small.id.nil? %></td>
+      <td class="text-right"><%= link_to 'More >>', small_path(small.big_category_id, small.id) if !small.big_category_id.nil? and !small.id.nil? %></td>
     </tr>
     <% end %>
   </table>

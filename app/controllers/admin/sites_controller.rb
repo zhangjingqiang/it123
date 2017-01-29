@@ -3,7 +3,7 @@ class Admin::SitesController < ApplicationController
   layout 'admin/application'
   before_action :set_site, only: [:show, :edit, :update, :destroy]
   before_action :set_big_categories, only: [:index, :search]
-  
+
   def index
     @sites = Site.all.paginate(:page => params[:page])
   end
@@ -28,9 +28,9 @@ class Admin::SitesController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @site.errors, status: :unprocessable_entity }
-      end 
-    end 
-  end 
+      end
+    end
+  end
 
   def update
     respond_to do |format|
@@ -40,8 +40,8 @@ class Admin::SitesController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @site.errors, status: :unprocessable_entity }
-      end 
-    end 
+      end
+    end
   end
 
   def destroy
@@ -51,7 +51,7 @@ class Admin::SitesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def load_small_categories
     big_category_id = params[:big_category_id].to_i
     @small_categories = SmallCategory.where(big_category_id: big_category_id)
@@ -61,20 +61,20 @@ class Admin::SitesController < ApplicationController
       }
     end
   end
-  
+
   def search
     @sites = Site.where(big_category_id: params[:big_category_id], small_category_id: params[:small_category_id]).paginate(:page => params[:page])
   end
 
   private
     def set_site
-      @site ||= Site.find(params[:id])
-    end 
+      @site ||= Site.friendly.find(params[:id])
+    end
 
     def site_params
       params.require(:site).permit(:name, :url, :big_category_id, :small_category_id)
     end
-  
+
     def set_big_categories
       @big_categories = BigCategory.all
     end

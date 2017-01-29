@@ -2,7 +2,7 @@ class Admin::BigCategoriesController < ApplicationController
   before_action :authenticate_admin!
   layout 'admin/application'
   before_action :set_big_category, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @big_categories = BigCategory.all.paginate(:page => params[:page])
   end
@@ -27,9 +27,9 @@ class Admin::BigCategoriesController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @big_category.errors, status: :unprocessable_entity }
-      end 
-    end 
-  end 
+      end
+    end
+  end
 
   def update
     respond_to do |format|
@@ -39,8 +39,8 @@ class Admin::BigCategoriesController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @big_category.errors, status: :unprocessable_entity }
-      end 
-    end 
+      end
+    end
   end
 
   def destroy
@@ -53,8 +53,8 @@ class Admin::BigCategoriesController < ApplicationController
 
   private
     def set_big_category
-      @big_category ||= BigCategory.find(params[:id])
-    end 
+      @big_category ||= BigCategory.friendly.find(params[:id])
+    end
 
     def big_category_params
       params.require(:big_category).permit(:name)
