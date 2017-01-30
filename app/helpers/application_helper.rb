@@ -4,6 +4,10 @@ module ApplicationHelper
     "http://gravatar.com/avatar/#{gravatar_id}.png"
   end
 
+  def top_sites(small_category_id)
+    Site.where(small_category_id: small_category_id).limit(3)
+  end
+
   def copyright_year
     case Time.now.year
     when 2015 then '2015'

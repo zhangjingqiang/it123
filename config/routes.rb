@@ -19,6 +19,6 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  get ':id', to: 'big_categories#show', as: 'big'
+  get ':big_category_id', to: 'big_categories#show', as: 'big'
   get ':big_category_id/:small_category_id', to: 'small_categories#show', as: 'small'
 end
